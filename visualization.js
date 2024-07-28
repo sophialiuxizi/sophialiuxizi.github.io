@@ -164,7 +164,7 @@ function scene1() {
 // Scene 2: Most Populous Countries
 function scene2() {
     const margin = { top: 20, right: 30, bottom: 50, left: 100 },
-        width = 800 - margin.left - margin.right,
+        width = 900 - margin.left - margin.right,
         height = 500 - margin.top - margin.bottom;
 
     const svg = d3.select("#visualization").append("svg")
@@ -176,7 +176,7 @@ function scene2() {
     const sortedData = population.sort((a, b) => +b[selectedYear2 + " Population"] - +a[selectedYear2 + " Population"]).slice(0, 10);
 
     const x = d3.scaleLinear()
-        .domain([0, d3.max(sortedData, d => +d[selectedYear2 + " Population"])]).nice()
+        .domain([0, 1500000000]).nice()
         .range([0, width]);
 
     const y = d3.scaleBand()
