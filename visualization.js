@@ -74,19 +74,19 @@ function updateScene() {
     d3.select("#title").html("");
 
     if (currentScene === 0) {
-        d3.select("#scene1").style("display", "block");
+        d3.select("#scene1").style("display", "flex");
         d3.select("#scene2").style("display", "none");
         d3.select("#scene3").style("display", "none");
         scene1();
     } else if (currentScene === 1) {
         d3.select("#scene1").style("display", "none");
-        d3.select("#scene2").style("display", "block");
+        d3.select("#scene2").style("display", "flex");
         d3.select("#scene3").style("display", "none");
         scene2();
     } else if (currentScene === 2) {
         d3.select("#scene1").style("display", "none");
         d3.select("#scene2").style("display", "none");
-        d3.select("#scene3").style("display", "block");
+        d3.select("#scene3").style("display", "flex");
         scene3();
     }
 }
@@ -98,6 +98,7 @@ function changeScene(delta) {
 
 // Scene 1: Global Overview
 function scene1() {
+    d3.select("#scene1Text").text("Please select a year to view world population distribution: ");
     const countriesTopo = topojson.feature(world, world.objects.countries).features;
 
     // Create a map for country population
@@ -163,6 +164,7 @@ function scene1() {
 
 // Scene 2: Most Populous Countries
 function scene2() {
+    d3.select("#scene2Text").text("Please select a year to view the top 10 most populous countries: ");
     const margin = { top: 20, right: 30, bottom: 50, left: 100 },
         width = 900 - margin.left - margin.right,
         height = 500 - margin.top - margin.bottom;
@@ -214,7 +216,7 @@ function scene2() {
 
 // Scene 3: Historical data
 function scene3() {
-    d3.select("#countryDropdownText").text("Please select a country to view historical data.");
+    d3.select("#scene3Text").text("Please select a country to view historical data: ");
 
     const countryData = population.filter(d => d["Country/Territory"] === selectedCountry)[0];
     const cleanData = yearsStr.map(year => ({
